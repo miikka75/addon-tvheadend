@@ -11,7 +11,7 @@ if bashio::config.has_value 'system_packages'; then
         || bashio::exit.nok 'Failed updating Alpine packages repository indexes'
 
     for package in $(bashio::config 'system_packages'); do
-        apk add "$package" \
+        apt install "$package" -y \
             || bashio::exit.nok "Failed installing system package ${package}"
     done
 fi
