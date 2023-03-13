@@ -7,8 +7,8 @@
 
 # Install user configured/requested packages
 if bashio::config.has_value 'system_packages'; then
-    apk update \
-        || bashio::exit.nok 'Failed updating Alpine packages repository indexes'
+    apt update -y \
+        || bashio::exit.nok 'Failed updating Debian packages repository indexes'
 
     for package in $(bashio::config 'system_packages'); do
         apt install "$package" -y \
